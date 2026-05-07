@@ -1,7 +1,7 @@
 <?php
 /**
  * contacto.php
- * Procesa el envío del formulario de contacto para Wilson Pinela.
+ * Procesa el envío del formulario de contacto para WTech - Premium Portafolio.
  */
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,33 +13,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validación básica
     if (empty($nombre) || empty($mensaje) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo "Por favor, completa el formulario correctamente.";
+        // Redirección con error
+        header("Location: index.html?status=error&msg=invalid_data#contacto");
         exit;
     }
 
     // Configuración del correo
     $destinatario = "pinela5202@gmail.com";
-    $asunto = "Nuevo mensaje de contacto de: $nombre";
+    $asunto = "WTech Contact: Nuevo lead de $nombre";
     
-    $contenido = "Nombre: $nombre\n";
-    $contenido .= "Email: $email\n\n";
-    $contenido .= "Mensaje:\n$mensaje\n";
+    $contenido = "Detalles del prospecto:\n";
+    $contenido .= "------------------------\n";
+    $contenido .= "Nombre: $nombre\n";
+    $contenido .= "Email corporativo/contacto: $email\n\n";
+    $contenido .= "Propuesta / Mensaje:\n";
+    $contenido .= "------------------------\n";
+    $contenido .= "$mensaje\n";
 
     $cabeceras = "From: $nombre <$email>";
 
     // Envío del correo
     if (mail($destinatario, $asunto, $contenido, $cabeceras)) {
         http_response_code(200);
-        echo "¡Gracias! Tu mensaje ha sido enviado.";
-        // Opcional: Redireccionar de vuelta
-        // header("Location: index.html?status=success");
+        // Redireccionar de vuelta a la landing page para mantener la inmersión UX
+        header("Location: index.html?status=success#contacto");
+        exit;
     } else {
         http_response_code(500);
-        echo "Oops! Algo salió mal y no pudimos enviar tu mensaje.";
+        header("Location: index.html?status=error&msg=server_error#contacto");
+        exit;
     }
 
 } else {
     http_response_code(403);
-    echo "Hubo un problema con tu envío, por favor intenta de nuevo.";
+    header("Location: index.html");
+    exit;
 }
 ?>

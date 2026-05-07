@@ -1,47 +1,50 @@
-# 🚀 Portafolio Premium - Wilson Pinela (WTech)
+# 🚀 WTech - Premium Software Engineering Portfolio
 
-Bienvenido al repositorio oficial del portafolio profesional de **Wilson Pinela**, Desarrollador y Diseñador de Soluciones Tecnológicas. Este proyecto ha sido diseñado con un enfoque en estética premium, rendimiento optimizado y una experiencia de usuario (UX) fluida.
+Bienvenido al repositorio oficial del portafolio profesional de **Wilson Pinela**, Ingeniero de Software y Diseñador UI/UX. Este proyecto ha sido rediseñado completamente con una arquitectura estética inspirada en plataformas tecnológicas de alta gama (SaaS modernos, Startups de IA como Linear o Vercel).
 
-## 🌟 Identidad Visual (Aesthetic Tech Elegance)
-- **Marca Personal:** WTech
-- **Slogan:** *"Tecnología, diseño e innovación aplicados a soluciones modernas y funcionales."*
-- **Paleta de Colores:** 
-  - Background: Deep Dark (`#222223`)
-  - Accent: Crimson Red (`#B62A2D`)
-  - Text: High Contrast White (`#FEFEFE`)
+## 🌟 Identidad Visual (Premium SaaS / Glassmorphism)
+El diseño abandona la estructura brutalista/plana a favor de una interfaz profunda, etérea y tecnológicamente pulcra.
+- **Atmósfera:** Fondos oscuros profundos con texturas de ruido (noise) para evitar superficies aburridas.
+- **Iluminación:** Gradientes radiales interactivos (*Glow Blobs*) y tarjetas reactivas al cursor.
+- **Paleta de Colores Base:** 
+  - Background Deep Navy: `#0B1121`
+  - Surface Slate: `#131C31`
+  - Accent Cyan: `#06B6D4`
+  - Accent Violet: `#8B5CF6`
+  - Text Primary: `#FFFFFF`
+- **Tipografía:** `Outfit` (Heading) y `Inter` (Body).
 
-## 🛠️ Stack Tecnológico
-Para garantizar la máxima velocidad y compatibilidad con hosting tradicional:
-- **Frontend:** HTML5 Semántico y CSS3 Moderno.
-- **Estilos:** [Tailwind CSS](https://tailwindcss.com/) (vía CDN para ligereza).
-- **Animaciones:** [AOS.js](https://michalsnik.github.io/aos/) (Animate On Scroll).
+## 🛠️ Stack Tecnológico Actualizado
+- **Estructura y Estilos:** HTML5, CSS Nativo (para físicas de luz y ruido) y [Tailwind CSS](https://tailwindcss.com/) (CDN).
+- **Animaciones:** Sistema customizado usando **Intersection Observer API** con físicas `cubic-bezier`. Se eliminaron librerías de terceros (AOS) para un rendimiento *enterprise* fluido.
 - **Iconografía:** [Lucide Icons](https://lucide.dev/).
-- **Backend:** PHP (Procesamiento de formulario de contacto).
-- **Arquitectura:** Single Page Application (SPA).
+- **Interacciones:** Efectos de seguimiento de ratón (CSS Variables dinámicas controladas por JS).
+- **Backend:** PHP (Procesamiento de formulario de contacto `contacto.php`).
 
-## 📂 Estructura del Proyecto
-- `index.html`: Archivo principal que contiene la estructura, estilos (Tailwind) y lógica de interactividad.
-- `contacto.php`: Script para el procesamiento y envío de correos electrónicos desde el formulario.
+## 📂 Estructura del Repositorio
+- `index.html`: Core de la interfaz, contiene variables CSS globales de iluminación, integración de Tailwind y scripts de renderizado y animación.
+- `contacto.php`: Script backend para procesamiento seguro de leads y correos corporativos.
+- `assets/hero_saas.png`: Render principal abstracto en 3D para el Hero Section.
 - `README.md`: Documentación del proyecto.
 
-## 🚀 Instalación y Despliegue
-Este proyecto está optimizado para ser desplegado en cualquier servidor con soporte para PHP (Hosting compartido, VPS, etc.).
+## 🚀 Despliegue
+Este proyecto mantiene su arquitectura SPA estática con PHP, lo que significa que su rendimiento es ultra-rápido en cualquier servidor tradicional.
 
-1. **Clonar el repositorio:**
+1. **Clonar repositorio:**
    ```bash
    git clone https://github.com/Wilson2309/Proyecto-Portafolio-Web.git
    ```
-2. **Subir vía FTP/Git:**
-   Simplemente sube los archivos `index.html` y `contacto.php` al directorio raíz de tu servidor (usualmente `public_html`).
-3. **Configuración:**
-   Asegúrate de que tu servidor tenga habilitada la función `mail()` de PHP para que el formulario funcione correctamente.
+2. **Hosting / Despliegue:**
+   Mueve el contenido a tu directorio `public_html` o despliega mediante GitHub Actions hacia tu servidor VPS/Shared. 
+   *(Nota: Se requiere motor PHP para que `contacto.php` funcione).*
 
-## 🧑‍💻 Perfil del Autor
-**Wilson Pinela** es un estudiante técnico en informática especializado en:
-- Desarrollo de Software (Java, Python, PHP).
-- Diseño UI/UX Moderno.
-- Infraestructura de Redes (Cisco Certified).
-- Automatización e Inteligencia Artificial.
+## 🧑‍💻 Acerca de Mí
+**Wilson Pinela**
+Estudiante técnico en informática con enfoque en rendimiento y calidad visual enterprise. Especialidades:
+- Construcción Full-Stack (Java, Python, PHP, Tailwind)
+- Diseño de Interfaces de Usuario High-End
+- Arquitectura de Redes y Cloud (Cisco)
+- Automatización y AI Agents
 
 ---
-*Desarrollado con ❤️ por Wilson Pinela.*
+*Diseñado y desarrollado con rigor técnico por Wilson Pinela.*
