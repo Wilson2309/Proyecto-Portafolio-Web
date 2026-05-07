@@ -2,13 +2,13 @@
 
 Bienvenido al repositorio oficial del portafolio profesional de **Wilson Pinela**, Desarrollador y Diseñador de Soluciones Tecnológicas. Este proyecto ha sido diseñado con un enfoque en estética premium, rendimiento optimizado y una experiencia de usuario (UX) fluida.
 
-## 🌟 Identidad Visual
+## 🌟 Identidad Visual (Aesthetic Tech Elegance)
 - **Marca Personal:** WTech
 - **Slogan:** *"Tecnología, diseño e innovación aplicados a soluciones modernas y funcionales."*
 - **Paleta de Colores:** 
-  - Principal: Slate 900 (`#0F172A`)
-  - Acento: Emerald 500 (`#10B981`)
-  - Texto: Slate 50 (`#F8FAFC`)
+  - Background: Deep Dark (`#222223`)
+  - Accent: Crimson Red (`#B62A2D`)
+  - Text: High Contrast White (`#FEFEFE`)
 
 ## 🛠️ Stack Tecnológico
 Para garantizar la máxima velocidad y compatibilidad con hosting tradicional:
