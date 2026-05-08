@@ -4,6 +4,8 @@
  * Procesa el envío del formulario de contacto para WTech - Premium Portafolio.
  */
 
+header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitización de entradas
     $nombre = strip_tags(trim($_POST["nombre"]));
@@ -13,8 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validación básica
     if (empty($nombre) || empty($mensaje) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        // Redirección con error
-        header("Location: index.html?status=error&msg=invalid_data#contacto");
+        echo json_encode(["status" => "error", "message" => "Datos inválidos"]);
         exit;
     }
 
@@ -30,23 +31,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contenido .= "------------------------\n";
     $contenido .= "$mensaje\n";
 
-    $cabeceras = "From: $nombre <$email>";
+    // Cabeceras para mejorar la entregabilidad
+    $cabeceras = "MIME-Version: 1.0" . "\r\n";
+    $cabeceras .= "Content-type:text/plain;charset=UTF-8" . "\r\n";
+    $cabeceras .= "From: WTech Portfolio <no-reply@wtech.com>" . "\r\n";
+    $cabeceras .= "Reply-To: $nombre <$email>" . "\r\n";
 
     // Envío del correo
     if (mail($destinatario, $asunto, $contenido, $cabeceras)) {
         http_response_code(200);
-        // Redireccionar de vuelta a la landing page para mantener la inmersión UX
-        header("Location: index.html?status=success#contacto");
+        echo json_encode(["status" => "success", "message" => "Mensaje enviado con éxito"]);
         exit;
     } else {
         http_response_code(500);
-        header("Location: index.html?status=error&msg=server_error#contacto");
+        echo json_encode(["status" => "error", "message" => "Error del servidor al enviar el correo"]);
         exit;
     }
 
 } else {
     http_response_code(403);
-    header("Location: index.html");
+    echo json_encode(["status" => "error", "message" => "Acceso no permitido"]);
     exit;
 }
 ?>

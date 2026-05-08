@@ -521,7 +521,7 @@
                 </div>
                 
                 <div class="card-premium p-10 md:p-14 reveal" style="transition-delay: 200ms;">
-                    <form action="contacto.php" method="POST" class="space-y-8 relative z-10">
+                    <form id="contact-form" action="contacto.php" method="POST" class="space-y-8 relative z-10">
                         <div class="relative group">
                             <input type="text" name="nombre" required placeholder="Tu Nombre" class="w-full bg-transparent border-b border-white/10 py-4 focus:outline-none focus:border-accent-cyan transition-colors text-primary placeholder:text-secondary/50 font-light">
                         </div>
@@ -611,9 +611,84 @@
             revealObserver.observe(el);
         });
 
-        // Mobile Menu (Simple toggle for now)
+        // AJAX Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin mx-auto"></i>';
+            lucide.createIcons();
+
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch('contacto.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    showNotification('¡Mensaje enviado con éxito!', 'success');
+                    contactForm.reset();
+                } else {
+                    showNotification('Error al enviar. Inténtalo de nuevo.', 'error');
+                }
+            } catch (error) {
+                showNotification('Error de conexión.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                lucide.createIcons();
+            }
+        });
+
+        // Notification System
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed bottom-10 right-10 px-6 py-4 rounded-2xl z-[100] transition-all duration-500 transform translate-y-20 opacity-0 flex items-center gap-3 ${
+                type === 'success' ? 'bg-accent-cyan/20 border border-accent-cyan text-accent-cyan' : 'bg-red-500/20 border border-red-500 text-red-500'
+            }`;
+            notification.style.backdropFilter = 'blur(10px)';
+            
+            notification.innerHTML = `
+                <i data-lucide="${type === 'success' ? 'check-circle' : 'alert-circle'}" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            lucide.createIcons();
+
+            // Trigger animation
+            setTimeout(() => {
+                notification.classList.remove('translate-y-20', 'opacity-0');
+            }, 100);
+
+            // Hide and remove
+            setTimeout(() => {
+                notification.classList.add('translate-y-20', 'opacity-0');
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }
+
+        // Mobile Menu
         document.getElementById('menu-btn').addEventListener('click', () => {
-            alert('Menú móvil en construcción'); // Placeholder para funcionalidad
+            const navLinks = document.querySelector('.md\\:flex');
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+            navLinks.classList.toggle('flex-col');
+            navLinks.classList.toggle('absolute');
+            navLinks.classList.toggle('top-24');
+            navLinks.classList.toggle('left-6');
+            navLinks.classList.toggle('right-6');
+            navLinks.classList.toggle('bg-surface');
+            navLinks.classList.toggle('p-8');
+            navLinks.classList.toggle('rounded-3xl');
+            navLinks.classList.toggle('border');
+            navLinks.classList.toggle('border-white/5');
         });
     </script>
 </body>
